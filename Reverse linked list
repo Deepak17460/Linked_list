@@ -1,4 +1,7 @@
- #include<bits/stdc++.h>
+
+Using Recursion approach!!
+
+#include<bits/stdc++.h>
 
  using namespace std;
 
@@ -108,4 +111,23 @@ int main(){
     // cout<<endl;
     // cout<<"Head " << head->data<<endl;
     // cout<<"Tail " << tail->data<<endl;
+}
+
+
+Using three pointer approach!!
+
+LinkedListNode<int> *reverseLinkedList(LinkedListNode<int> *head) 
+{
+   // if(head==NULL) return NULL;
+    if(head==NULL) return NULL;
+    LinkedListNode<int> *p=NULL;
+     LinkedListNode<int> *c=head;
+     LinkedListNode<int> *n=head->next;
+    while(c!=NULL){
+         c->next=p;
+        p=c;
+        c=n;
+        if(n!=NULL) n=n->next;
+    }
+    return p;
 }
