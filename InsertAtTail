@@ -31,7 +31,8 @@ void InsertAtTail(Node*&tail,int data){
     // Creating an object(Node)
     // dynamically Creating a Node
     Node*temp=new Node(data);
-    tail->next=temp;
+    //tail->next=temp;
+    tail=temp;
     tail=tail->next;
 
 
