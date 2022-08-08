@@ -1,0 +1,111 @@
+ #include<bits/stdc++.h>
+
+ using namespace std;
+
+// Creating user define data types using class keyword
+
+class Node{
+    public:
+    // Properties of an Object
+    int data;
+    Node* next;
+    // Constructor calling 
+    Node(int data){
+        this->data=data; 
+        this->next=NULL;
+    }
+};
+//Insert a Node at Head of a linked list
+// Function for adding a Node
+void InsertAtHead(Node* &head,int data){
+    //Create A new Node
+    // dynamically creating the node
+    Node*temp=new Node(data);
+    temp->next=head;
+    head=temp;
+}
+
+void InsertAtTail(Node*&tail,int data){
+    // Creating an object(Node)
+    // dynamically Creating a Node
+    Node*temp=new Node(data);
+    tail->next=temp;
+    tail=temp;
+
+
+}
+
+Node* reverse(Node*&head){
+        if(head->next==NULL) return head;
+        Node*newhead=reverse(head->next);
+          head->next->next=head;
+        head->next=NULL;
+        return newhead;
+  
+}
+// Creating a functiuon to insert a Node In middle of linked list
+void InsertAtMidlle(Node*&tail,Node*&head,int pos,int data){
+    // insert at Starting
+    if(pos==1){
+        InsertAtHead(head,data);
+        return;
+    }
+    Node*temp=head;
+    int ct=1;
+    // Traversing the node of Linked list
+    while(ct<pos-1){
+        temp=temp->next;
+        ct++;
+    }
+    // Insert at last of linked
+    if(temp->next==NULL){
+        InsertAtTail(tail,data);
+        return;
+    }
+    // Creating a new Node atr Midlle
+    Node* InsertAtMidle=new Node(data);
+    InsertAtMidle->next=temp->next;
+    temp->next=InsertAtMidle;
+
+}
+// function For printing the value of a Node
+
+void print(Node*&head){
+    Node*temp=head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+
+int main(){
+      // dynamically Creating the Node of linked list
+      // this will call Constructor in Class
+      // New a key word which comes with Delete(Operator)
+      Node*node1=new Node(10);
+    //   cout<<node1->data<<endl;
+     // cout<<node1->next<<endl;
+
+      Node*head=node1;
+      Node*tail=node1;
+    //   InsertAtHead(head,12);
+    //   print(head);
+    //   cout<<endl;
+    //    InsertAtHead(head,15);
+    //   print(head);
+
+    InsertAtTail(tail,12);
+//print(head);
+    //cout<<endl;
+    InsertAtTail(tail,13);
+
+    Node* newNode=reverse(head);
+    print(newNode);
+    //print(head);
+    // cout<<endl;
+    // InsertAtMidlle(tail,head,4,15);
+    // print(head);
+    // cout<<endl;
+    // cout<<"Head " << head->data<<endl;
+    // cout<<"Tail " << tail->data<<endl;
+}
