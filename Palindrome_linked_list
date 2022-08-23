@@ -1,0 +1,54 @@
+Code-> 
+#include<bits/stdc++.h>
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+    ListNode * reverse(ListNode* temp)
+    {
+        ListNode*prev=NULL,*curr=temp,*nex=NULL;
+        while(curr)
+        {   nex=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=nex;
+        }
+        return prev;
+    }
+public:
+    bool isPalindrome(ListNode* head) {
+        // corner case
+        if(head==NULL || head->next==NULL)
+            return true;
+        // middle of the linked
+        ListNode *slow=head;
+        ListNode *fast=head;
+        while(fast->next!=NULL && fast->next->next!=NULL)
+        {
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        // reverse the middle of the linked list
+        slow=reverse(slow->next);
+        //checking the Palindrome
+        while(slow!=NULL)
+        {
+            if(head->val==slow->val)
+            {
+                head=head->next;
+                slow=slow->next;
+            }
+            else return false;
+        }
+        return true;
+    }
+};
+// Time Complexity is O(N) And Space Complexity is O(1)
